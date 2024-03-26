@@ -20,13 +20,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kodeco.android.countryinfo.models.Country
+import com.kodeco.android.countryinfo.repositories.CountryRepositoryImpl
 import com.kodeco.android.countryinfo.sample.sampleCountries
 import com.kodeco.android.countryinfo.ui.screens.countrydetails.CountryDetailsScreen
+import com.kodeco.android.countryinfo.ui.screens.countrydetails.CountryDetailsViewModel
+import com.kodeco.android.countryinfo.ui.screens.countryinfo.CountryInfoViewModel
 
 @Composable
 fun CountryInfoList(
     countries: List<Country>,
+    onCountryRowTap : (Int) -> Unit,
     onRefresh: () -> Unit,
 ) {
     var selectedCountry: Country? by remember { mutableStateOf(null) }
@@ -41,28 +47,18 @@ fun CountryInfoList(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Text(
-                text = "Taps: $tapCounter",
-                textAlign = TextAlign.Start,
-            )
+
             Button(
                 onClick = onRefresh,
             ) {
                 Text(text = "Refresh")
             }
-            Text(
-                text = "Back: $backCounter",
-                textAlign = TextAlign.End,
-            )
+
         }
 
         selectedCountry?.let { country ->
-            CountryDetailsScreen(
-                country = country,
-            ) {
-                selectedCountry = null
-                backCounter++
-            }
+            val id = countries.indexOf (country)
+            onCountryRowTap(id)
         } ?: run {
             LazyColumn {
                 items(countries) { country ->
@@ -82,5 +78,6 @@ fun CountryInfoListPreview() {
     CountryInfoList(
         countries = sampleCountries,
         onRefresh = {},
+        onCountryRowTap = {},
     )
 }

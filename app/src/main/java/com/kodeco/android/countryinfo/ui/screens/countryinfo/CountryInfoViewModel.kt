@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
-class CountryInfoViewModel(
+class CountryInfoViewModel (
     private val repository: CountryRepository,
 ) : ViewModel() {
 
