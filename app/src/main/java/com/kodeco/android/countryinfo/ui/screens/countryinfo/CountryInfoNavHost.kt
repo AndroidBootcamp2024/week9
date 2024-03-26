@@ -3,7 +3,6 @@ package com.kodeco.android.countryinfo.ui.screens.countryinfo
 
 import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.House
 import androidx.compose.material.icons.filled.Info
 
@@ -19,7 +18,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import coil.compose.rememberImagePainter
 import com.kodeco.android.countryinfo.repositories.CountryRepository
 import com.kodeco.android.countryinfo.ui.components.AboutCountryApp
 import com.kodeco.android.countryinfo.ui.screens.countrydetails.CountryDetailsScreen

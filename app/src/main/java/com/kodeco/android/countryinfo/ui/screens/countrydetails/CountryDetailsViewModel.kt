@@ -1,7 +1,5 @@
 package com.kodeco.android.countryinfo.ui.screens.countrydetails
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.kodeco.android.countryinfo.models.Country
