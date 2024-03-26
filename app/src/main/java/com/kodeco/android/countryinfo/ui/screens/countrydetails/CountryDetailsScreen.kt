@@ -18,8 +18,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.kodeco.android.countryinfo.models.Country
@@ -36,6 +38,7 @@ fun CountryDetailsScreen(
 ) {
     val country by viewModel.country.collectAsState()
     LazyColumn(modifier = Modifier.padding(16.dp)) {
+        item { Text(text = country.commonName, style = TextStyle(fontSize= 30.sp) )}
         item { Text(text = "Capital: ${country.mainCapital}") }
         item { Text(text = "Population: ${country.population}") }
         item { Text(text = "Area: ${country.area}") }
