@@ -17,16 +17,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kodeco.android.countryinfo.models.Country
 import com.kodeco.android.countryinfo.sample.sampleCountries
-import com.kodeco.android.countryinfo.ui.screens.countrydetails.CountryDetailsScreen
 
 @Composable
 fun CountryInfoList(
     countries: List<Country>,
+    onCountryRowTap : (Int) -> Unit,
     onRefresh: () -> Unit,
 ) {
     var selectedCountry: Country? by remember { mutableStateOf(null) }
@@ -41,28 +40,18 @@ fun CountryInfoList(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Text(
-                text = "Taps: $tapCounter",
-                textAlign = TextAlign.Start,
-            )
+
             Button(
                 onClick = onRefresh,
             ) {
                 Text(text = "Refresh")
             }
-            Text(
-                text = "Back: $backCounter",
-                textAlign = TextAlign.End,
-            )
+
         }
 
         selectedCountry?.let { country ->
-            CountryDetailsScreen(
-                country = country,
-            ) {
-                selectedCountry = null
-                backCounter++
-            }
+            val id = countries.indexOf (country)
+            onCountryRowTap(id)
         } ?: run {
             LazyColumn {
                 items(countries) { country ->
@@ -82,5 +71,6 @@ fun CountryInfoListPreview() {
     CountryInfoList(
         countries = sampleCountries,
         onRefresh = {},
+        onCountryRowTap = {},
     )
 }
